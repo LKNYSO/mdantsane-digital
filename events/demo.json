@@ -1,0 +1,50 @@
+{
+  "theme": "amber",
+  "type": "Traditional Wedding (Umgidi)",
+  "title": "Khumalo & Mokoena",
+  "date": "Saturday, 19 December 2026 • 10:00 AM",
+  "venue": "NU 2 Community Hall, Mdantsane",
+  "mapUrl": "https://maps.google.com/?q=Mdantsane",
+  "welcomeNote": "Enkosi kakhulu for celebrating this special milestone with our families. Please follow the order of events below.",
+  "schedule": [
+    {
+      "time": "10:00",
+      "title": "Arrival of Guests & Opening Prayer",
+      "lead": "Rev. S. Ndlovu"
+    },
+    {
+      "time": "11:30",
+      "title": "Traditional Attire Parade & Dance",
+      "lead": "Bridal Party"
+    },
+    {
+      "time": "13:00",
+      "title": "Speeches & Advice to the Couple",
+      "lead": "Family Elders"
+    },
+    {
+      "time": "14:00",
+      "title": "Lunch & Refreshments Served",
+      "lead": "Catering Team"
+    },
+    {
+      "time": "16:00",
+      "title": "Vote of Thanks & Closing",
+      "lead": "Program Director (MC)"
+    }
+  ],
+  "keyPeople": [
+    {
+      "role": "Program Director (MC)",
+      "name": "Mr. L. Dlamini"
+    },
+    {
+      "role": "Groom's Family Spokesperson",
+      "name": "Mr. B. Khumalo"
+    },
+    {
+      "role": "Bride's Family Spokesperson",
+      "name": "Mr. M. Mokoena"
+    }
+  ]
+}

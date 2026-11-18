@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+  <title>Event Program</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    html { scroll-behavior: smooth; }
+    :root {
+      --theme-primary: #78350f;
+      --theme-dark: #451a03;
+      --theme-badge-bg: #92400e;
+      --theme-badge-text: #fef3c7;
+      --theme-soft-bg: #fffbeb;
+    }
+    .bg-theme-primary { background-color: var(--theme-primary); }
+    .text-theme-primary { color: var(--theme-primary); }
+    .bg-theme-badge { background-color: var(--theme-badge-bg); color: var(--theme-badge-text); }
+    .bg-theme-soft { background-color: var(--theme-soft-bg); color: var(--theme-primary); }
+    @media print {
+      .no-print { display: none !important; }
+    }
+  </style>
+</head>
+<body class="bg-stone-50 text-stone-800 font-sans antialiased pb-24">
+
+  <!-- Top Hero Banner -->
+  <header id="hero-banner" class="bg-theme-primary text-white px-5 pt-10 pb-8 rounded-b-3xl shadow-md">
+    <div class="max-w-md mx-auto text-center">
+      <span id="event-type" class="inline-block uppercase tracking-widest text-xs font-semibold bg-theme-badge px-3 py-1 rounded-full mb-3">
+        Loading...
+      </span>
+      <h1 id="event-title" class="text-3xl font-bold tracking-tight mb-2">
+        Event Program
+      </h1>
+      <p id="event-date" class="text-white/90 text-sm font-medium"></p>
+      <p id="event-venue" class="text-white/80 text-xs mt-1"></p>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="max-w-md mx-auto px-4 mt-6 space-y-8">
+    <!-- Welcome Note -->
+    <section class="bg-white p-5 rounded-2xl shadow-sm border border-stone-100">
+      <h2 class="text-sm font-bold uppercase tracking-wider text-theme-primary mb-2">Welcome Message</h2>
+      <p id="welcome-note" class="text-sm text-stone-600 leading-relaxed"></p>
+    </section>
+
+    <!-- Order of Events -->
+    <section id="program-section">
+      <div class="flex items-center justify-between mb-4 px-1">
+        <h2 class="text-lg font-bold text-stone-900">Order of Events</h2>
+        <span class="text-xs text-stone-500 bg-stone-200/70 px-2.5 py-1 rounded-full">Live Schedule</span>
+      </div>
+      <div id="schedule-list" class="space-y-3"></div>
+    </section>
+
+    <!-- Key Roles & Hosts -->
+    <section id="people-section" class="bg-white p-5 rounded-2xl shadow-sm border border-stone-100">
+      <h2 class="text-sm font-bold uppercase tracking-wider text-theme-primary mb-3">Key Roles &amp; Hosts</h2>
+      <ul id="people-list" class="space-y-2.5 text-sm"></ul>
+    </section>
+
+    <!-- Branded Lead-Gen Footer -->
+    <footer class="text-center pt-4 pb-6 text-xs text-stone-400">
+      <p>Digital Program by <strong class="text-stone-600">Mdantsane Digital</strong></p>
+      <a href="https://wa.me/27604163808?text=Hi!%20I%20saw%20your%20digital%20event%20program%20and%20want%20one%20for%20my%20event." 
+         class="inline-block mt-1 text-theme-primary underline font-medium">
+        Book a digital program for your event &rarr;
+      </a>
+    </footer>
+  </main>
+
+  <!-- Sticky Bottom Navigation -->
+  <nav class="no-print fixed bottom-0 inset-x-0 bg-white/95 backdrop-blur border-t border-stone-200 px-4 py-3 z-50">
+    <div class="max-w-md mx-auto flex items-center justify-between gap-2">
+      <a id="map-link" href="#" target="_blank" rel="noopener"
+         class="flex-1 flex items-center justify-center gap-1.5 bg-stone-100 hover:bg-stone-200 text-stone-800 text-xs font-semibold py-2.5 px-3 rounded-xl transition">
+        <span>📍 Venue Map</span>
+      </a>
+      <button onclick="window.print()" 
+              class="flex-1 flex items-center justify-center gap-1.5 bg-theme-primary text-white text-xs font-semibold py-2.5 px-3 rounded-xl shadow-sm transition">
+        <span>📥 Save PDF / Offline</span>
+      </button>
+    </div>
+  </nav>
+
+  <script>
+    const themes = {
+      amber: { primary: "#78350f", dark: "#451a03", badgeBg: "#92400e", badgeText: "#fef3c7", softBg: "#fffbeb" },
+      navy: { primary: "#1e3a8a", dark: "#172554", badgeBg: "#1d4ed8", badgeText: "#dbeafe", softBg: "#eff6ff" },
+      maroon: { primary: "#881337", dark: "#4c0519", badgeBg: "#9f1239", badgeText: "#ffe4e6", softBg: "#fff1f2" },
+      emerald: { primary: "#065f46", dark: "#022c22", badgeBg: "#047857", badgeText: "#d1fae5", softBg: "#ecfdf5" },
+      charcoal: { primary: "#18181b", dark: "#09090b", badgeBg: "#ca8a04", badgeText: "#ffffff", softBg: "#fefce8" }
+    };
+
+    async function loadEventProgram() {
+      const params = new URLSearchParams(window.location.search);
+      // Supports both ?e=khumalo-2026 and clean paths like /e/khumalo-2026
+      const pathParts = window.location.pathname.split("/").filter(Boolean);
+      const slugFromPath = pathParts[0] === "e" && pathParts[1] ? pathParts[1] : null;
+      const slug = params.get("e") || slugFromPath || "demo";
+
+      try {
+        const response = await fetch(`/events/${slug}.json`);
+        if (!response.ok) throw new Error("Event not found");
+        const eventData = await response.json();
+
+        // Apply Theme
+        const selectedTheme = themes[eventData.theme] || themes.amber;
+        const root = document.documentElement;
+        root.style.setProperty("--theme-primary", selectedTheme.primary);
+        root.style.setProperty("--theme-dark", selectedTheme.dark);
+        root.style.setProperty("--theme-badge-bg", selectedTheme.badgeBg);
+        root.style.setProperty("--theme-badge-text", selectedTheme.badgeText);
+        root.style.setProperty("--theme-soft-bg", selectedTheme.softBg);
+
+        // Populate Details
+        document.title = `${eventData.title} — Event Program`;
+        document.getElementById("event-type").textContent = eventData.type;
+        document.getElementById("event-title").textContent = eventData.title;
+        document.getElementById("event-date").textContent = eventData.date;
+        document.getElementById("event-venue").textContent = eventData.venue;
+        document.getElementById("welcome-note").textContent = eventData.welcomeNote;
+        document.getElementById("map-link").href = eventData.mapUrl;
+
+        // Render Schedule
+        document.getElementById("schedule-list").innerHTML = eventData.schedule.map(item => `
+          <div class="bg-white p-4 rounded-xl shadow-sm border border-stone-100 flex items-start gap-3.5">
+            <div class="bg-theme-soft font-bold text-xs px-2.5 py-1.5 rounded-lg shrink-0 mt-0.5">
+              ${item.time}
+            </div>
+            <div>
+              <h3 class="font-semibold text-sm text-stone-900">${item.title}</h3>
+              <p class="text-xs text-stone-500 mt-0.5">${item.lead}</p>
+            </div>
+          </div>
+        `).join("");
+
+        // Render Key People
+        document.getElementById("people-list").innerHTML = eventData.keyPeople.map(person => `
+          <li class="flex justify-between items-center border-b border-stone-100 pb-2 last:border-none last:pb-0">
+            <span class="text-stone-500 text-xs">${person.role}</span>
+            <span class="font-semibold text-stone-800 text-xs">${person.name}</span>
+          </li>
+        `).join("");
+
+      } catch (error) {
+        document.body.innerHTML = `
+          <div class="min-h-screen flex flex-col items-center justify-center p-6 text-center">
+            <h1 class="text-xl font-bold text-stone-800 mb-2">Program Not Found</h1>
+            <p class="text-sm text-stone-500">Please check the QR code or contact the event organizer.</p>
+          </div>
+        `;
+      }
+    }
+
+    if ("serviceWorker" in navigator) {
+      window.addEventListener("load", () => {
+        navigator.serviceWorker.register("/sw.js").catch(err => console.log("SW failed:", err));
+      });
+    }
+
+    loadEventProgram();
+  </script>
+</body>
+</html>

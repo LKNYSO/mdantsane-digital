@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+  <title>Event Program</title>
+  <script src="https://tailwindcss.com"></script>
+  <style>
+    /* Smooth scrolling and print-friendly layout */
+    html { scroll-behavior: smooth; }
+    @media print {
+      .no-print { display: none !important; }
+    }
+  </style>
+</head>
+<body class="bg-stone-50 text-stone-800 font-sans antialiased pb-24">
+
+  <!-- Top Hero Banner -->
+  <header id="hero-banner" class="bg-amber-900 text-white px-5 pt-10 pb-8 rounded-b-3xl shadow-md">
+    <div class="max-w-md mx-auto text-center">
+      <span id="event-type" class="inline-block uppercase tracking-widest text-xs font-semibold bg-amber-800/80 text-amber-100 px-3 py-1 rounded-full mb-3">
+        Traditional Wedding
+      </span>
+      <h1 id="event-title" class="text-3xl font-bold tracking-tight mb-2">
+        Khumalo &amp; Mokoena
+      </h1>
+      <p id="event-date" class="text-amber-100 text-sm font-medium">
+        Saturday, 19 December 2026 • 10:00 AM
+      </p>
+      <p id="event-venue" class="text-amber-200/90 text-xs mt-1">
+        NU 2 Community Hall, Mdantsane
+      </p>
+    </div>
+  </header>
+
+  <!-- Main Content Container -->
+  <main class="max-w-md mx-auto px-4 mt-6 space-y-8">
+
+    <!-- Welcome Note -->
+    <section class="bg-white p-5 rounded-2xl shadow-sm border border-stone-100">
+      <h2 class="text-sm font-bold uppercase tracking-wider text-amber-900 mb-2">Welcome Message</h2>
+      <p id="welcome-note" class="text-sm text-stone-600 leading-relaxed">
+        Enkosi kakhulu for celebrating this special milestone with our families. Please follow the order of events below.
+      </p>
+    </section>
+
+    <!-- Order of Events (Program) -->
+    <section id="program-section">
+      <div class="flex items-center justify-between mb-4 px-1">
+        <h2 class="text-lg font-bold text-stone-900">Order of Events</h2>
+        <span class="text-xs text-stone-500 bg-stone-200/70 px-2.5 py-1 rounded-full">Live Schedule</span>
+      </div>
+      
+      <div id="schedule-list" class="space-y-3">
+        <!-- Schedule items injected dynamically via JS -->
+      </div>
+    </section>
+
+    <!-- Key People / Bridal Party / Speakers -->
+    <section id="people-section" class="bg-white p-5 rounded-2xl shadow-sm border border-stone-100">
+      <h2 class="text-sm font-bold uppercase tracking-wider text-amber-900 mb-3">Key Roles &amp; Hosts</h2>
+      <ul id="people-list" class="space-y-2.5 text-sm">
+        <!-- People injected dynamically via JS -->
+      </ul>
+    </section>
+
+    <!-- Branded Footer (Your Lead Gen Engine) -->
+    <footer class="text-center pt-4 pb-6 text-xs text-stone-400">
+      <p>Digital Program by <strong class="text-stone-600">Mdantsane Digital Events</strong></p>
+      <a href="https://wa.me." 
+         class="inline-block mt-1 text-amber-800 underline font-medium">
+        Book a digital program for your event &rarr;
+      </a>
+    </footer>
+  </main>
+
+  <!-- Sticky Bottom Thumb-Zone Bar -->
+  <nav class="no-print fixed bottom-0 inset-x-0 bg-white/95 backdrop-blur border-t border-stone-200 px-4 py-3 z-50">
+    <div class="max-w-md mx-auto flex items-center justify-between gap-2">
+      <a id="map-link" href="#" target="_blank" rel="noopener"
+         class="flex-1 flex items-center justify-center gap-1.5 bg-stone-100 hover:bg-stone-200 text-stone-800 text-xs font-semibold py-2.5 px-3 rounded-xl transition">
+        <span>📍 Venue Map</span>
+      </a>
+      
+      <button onclick="window.print()" 
+              class="flex-1 flex items-center justify-center gap-1.5 bg-amber-900 hover:bg-amber-800 text-white text-xs font-semibold py-2.5 px-3 rounded-xl shadow-sm transition">
+        <span>📥 Save PDF / Offline</span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Event Data & Rendering Script -->
+  <script>
+    // EDIT THIS OBJECT FOR EACH NEW CLIENT
+    const eventData = {
+      type: "Traditional Wedding (Umgidi)",
+      title: "Khumalo & Mokoena",
+      date: "Saturday, 19 December 2026 • 10:00 AM",
+      venue: "NU 2 Community Hall, Mdantsane",
+      mapUrl: "https://google.com",
+      welcomeNote: "We warmly welcome family, friends, and neighbours joining us in Mdantsane today. Thank you for your love, support, and blessings.",
+      schedule: [
+        { time: "10:00", title: "Arrival of Guests & Opening Prayer", lead: "Rev. S. Ndlovu" },
+        { time: "10:45", title: "Welcoming of the Families", lead: "Uncle T. Khumalo" },
+        { time: "11:30", title: "Traditional Attire Parade & Dance", lead: "Bridal Party" },
+        { time: "13:00", title: "Speeches & Advice to the Couple", lead: "Family Elders" },
+        { time: "14:00", title: "Lunch & Refreshments Served", lead: "Catering Team" },
+        { time: "16:00", title: "Vote of Thanks & Closing", lead: "Program Director (MC)" }
+      ],
+      keyPeople: [
+        { role: "Program Director (MC)", name: "Mr. L. Dlamini" },
+        { role: "Groom's Family Spokesperson", name: "Mr. B. Khumalo" },
+        { role: "Bride's Family Spokesperson", name: "Mr. M. Mokoena" }
+      ]
+    };
+
+    // Populate Header & Details
+    document.title = `${eventData.title} — Event Program`;
+    document.getElementById("event-type").textContent = eventData.type;
+    document.getElementById("event-title").textContent = eventData.title;
+    document.getElementById("event-date").textContent = eventData.date;
+    document.getElementById("event-venue").textContent = eventData.venue;
+    document.getElementById("welcome-note").textContent = eventData.welcomeNote;
+    document.getElementById("map-link").href = eventData.mapUrl;
+
+    // Render Schedule
+    const scheduleContainer = document.getElementById("schedule-list");
+    eventData.schedule.forEach(item => {
+      const card = document.createElement("div");
+      card.className = "bg-white p-4 rounded-xl shadow-sm border border-stone-100 flex items-start gap-3.5";
+      card.innerHTML = `
+        <div class="bg-amber-50 text-amber-900 font-bold text-xs px-2.5 py-1.5 rounded-lg shrink-0 mt-0.5">
+          ${item.time}
+        </div>
+        <div>
+          <h3 class="font-semibold text-sm text-stone-900">${item.title}</h3>
+          <p class="text-xs text-stone-500 mt-0.5">${item.lead}</p>
+        </div>
+      `;
+      scheduleContainer.appendChild(card);
+    });
+
+    // Render Key People
+    const peopleContainer = document.getElementById("people-list");
+    eventData.keyPeople.forEach(person => {
+      const li = document.createElement("li");
+      li.className = "flex justify-between items-center border-b border-stone-100 pb-2 last:border-none last:pb-0";
+      li.innerHTML = `
+        <span class="text-stone-500 text-xs">${person.role}</span>
+        <span class="font-semibold text-stone-800 text-xs">${person.name}</span>
+      `;
+      peopleContainer.appendChild(li);
+    });
+
+    // Register Offline Service Worker
+    if ("serviceWorker" in navigator) {
+      window.addEventListener("load", () => {
+        navigator.serviceWorker.register("./sw.js").catch(err => console.log("SW failed:", err));
+      });
+    }
+  </script>
+</body>
+</html>
