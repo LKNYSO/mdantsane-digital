@@ -5,6 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
   <title>Event Program</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <script src="/qrcode.min.js"></script>
+
   <style>
     html { scroll-behavior: smooth; }
     :root {
@@ -79,12 +81,41 @@
          class="flex-1 flex items-center justify-center gap-1.5 bg-stone-100 hover:bg-stone-200 text-stone-800 text-xs font-semibold py-2.5 px-3 rounded-xl transition">
         <span>📍 Venue Map</span>
       </a>
+
+      <button onclick="openQrModal()" 
+            class="flex-1 flex items-center justify-center gap-1 bg-stone-100 hover:bg-stone-200 text-stone-800 text-xs font-semibold py-2.5 px-2 rounded-xl transition">
+        <span>📲 Share QR</span>
+      </button>
+
       <button onclick="window.print()" 
               class="flex-1 flex items-center justify-center gap-1.5 bg-theme-primary text-white text-xs font-semibold py-2.5 px-3 rounded-xl shadow-sm transition">
         <span>📥 Save PDF / Offline</span>
       </button>
     </div>
   </nav>
+  <!-- Peer-to-Peer QR Share Modal -->
+  <div id="qr-modal" onclick="closeQrModal(event)" 
+      class="no-print hidden fixed inset-0 bg-black/75 backdrop-blur-sm z-50 flex items-center justify-center p-5">
+    <div class="bg-white rounded-3xl max-w-xs w-full p-6 text-center shadow-2xl relative" onclick="event.stopPropagation()">
+      <button onclick="closeQrModal()" 
+              class="absolute top-4 right-4 w-8 h-8 rounded-full bg-stone-100 text-stone-600 font-bold text-sm flex items-center justify-center hover:bg-stone-200">
+        ✕
+      </button>
+      
+      <span class="inline-block uppercase tracking-widest text-[10px] font-bold bg-theme-soft px-2.5 py-1 rounded-full mb-2">
+        Instant Share
+      </span>
+      <h3 class="text-lg font-bold text-stone-900 mb-1">Scan to Open Program</h3>
+      <p class="text-xs text-stone-500 mb-5">Ask the person next to you to point their phone camera here</p>
+      
+      <!-- QR Code Container (Pure white background for reliable scanning) -->
+      <div class="bg-white p-4 rounded-2xl border-2 border-stone-100 inline-block mx-auto mb-4 shadow-inner">
+        <div id="live-qr-code"></div>
+      </div>
+
+      <p id="modal-event-title" class="text-xs font-semibold text-stone-700 truncate"></p>
+    </div>
+  </div>
 
   <script>
     const themes = {
@@ -115,6 +146,31 @@
         root.style.setProperty("--theme-badge-bg", selectedTheme.badgeBg);
         root.style.setProperty("--theme-badge-text", selectedTheme.badgeText);
         root.style.setProperty("--theme-soft-bg", selectedTheme.softBg);
+        let qrGenerated = false;
+
+        function generateLiveQr(qrColor) {
+          if (qrGenerated) return;
+          const qrContainer = document.getElementById("live-qr-code");
+          qrContainer.innerHTML = "";
+          new QRCode(qrContainer, {
+            text: window.location.href, // Automatically encodes the exact current event URL
+            width: 200,
+            height: 200,
+            colorDark: qrColor || "#1c1917",
+            colorLight: "#ffffff",
+            correctLevel: QRCode.CorrectLevel.H
+          });
+          qrGenerated = true;
+        }
+
+        function openQrModal() {
+          document.getElementById("modal-event-title").textContent = document.getElementById("event-title").textContent;
+          document.getElementById("qr-modal").classList.remove("hidden");
+        }
+
+        function closeQrModal() {
+          document.getElementById("qr-modal").classList.add("hidden");
+        }
 
         // Populate Details
         document.title = `${eventData.title} — Event Program`;
