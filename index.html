@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+  <title>Mdantsane Digital Events — QR Code Event Programs</title>
+  <style>
+    :root {
+      --primary: #78350f;
+      --primary-dark: #451a03;
+      --accent-soft: #fffbeb;
+      --accent-badge: #fef3c7;
+      --text-main: #1c1917;
+      --text-muted: #57534e;
+      --bg-page: #fafaf9;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+    body { background: var(--bg-page); color: var(--text-main); line-height: 1.55; }
+
+    /* Hero Section */
+    header {
+      background: linear-gradient(160deg, var(--primary) 0%, var(--primary-dark) 100%);
+      color: #ffffff;
+      padding: 44px 20px 48px;
+      text-align: center;
+      border-bottom-left-radius: 32px;
+      border-bottom-right-radius: 32px;
+      box-shadow: 0 8px 24px rgba(69, 26, 3, 0.15);
+    }
+    .container { max-width: 520px; margin: 0 auto; }
+    .pill {
+      display: inline-block;
+      background: rgba(255, 255, 255, 0.15);
+      color: #fef3c7;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      padding: 5px 14px;
+      border-radius: 999px;
+      margin-bottom: 14px;
+    }
+    header h1 { font-size: 28px; font-weight: 800; line-height: 1.2; margin-bottom: 12px; }
+    header p { font-size: 14px; color: rgba(255, 255, 255, 0.9); margin-bottom: 24px; }
+
+    .cta-group { display: flex; flex-direction: column; gap: 10px; max-width: 340px; margin: 0 auto; }
+    .btn {
+      display: inline-block;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 14px;
+      padding: 14px 20px;
+      border-radius: 14px;
+      text-align: center;
+      transition: transform 0.15s ease;
+    }
+    .btn:active { transform: scale(0.98); }
+    .btn-white { background: #ffffff; color: var(--primary-dark); box-shadow: 0 4px 12px rgba(0,0,0,0.15); }
+    .btn-outline { background: rgba(255,255,255,0.12); color: #ffffff; border: 1px solid rgba(255,255,255,0.3); }
+
+    /* Sections */
+    main { padding: 28px 16px 48px; }
+    section { margin-bottom: 34px; }
+    h2 { font-size: 20px; font-weight: 800; text-align: center; margin-bottom: 6px; color: var(--primary-dark); }
+    .section-sub { text-align: center; font-size: 13px; color: var(--text-muted); margin-bottom: 20px; }
+
+    /* Feature Grid */
+    .feature-card {
+      background: #ffffff;
+      padding: 16px;
+      border-radius: 16px;
+      border: 1px solid #e7e5e4;
+      margin-bottom: 10px;
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+    }
+    .icon-box {
+      background: var(--accent-soft);
+      color: var(--primary);
+      font-size: 20px;
+      width: 42px;
+      height: 42px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .feature-card h3 { font-size: 15px; font-weight: 700; margin-bottom: 2px; }
+    .feature-card p { font-size: 13px; color: var(--text-muted); }
+
+    /* Pricing Cards */
+    .price-card {
+      background: #ffffff;
+      border: 2px solid #e7e5e4;
+      border-radius: 20px;
+      padding: 22px;
+      margin-bottom: 16px;
+      position: relative;
+    }
+    .price-card.featured {
+      border-color: var(--primary);
+      box-shadow: 0 8px 20px rgba(120, 53, 15, 0.08);
+    }
+    .popular-tag {
+      position: absolute;
+      top: -11px;
+      right: 18px;
+      background: var(--primary);
+      color: #ffffff;
+      font-size: 10px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      padding: 3px 10px;
+      border-radius: 999px;
+    }
+    .tier-name { font-size: 16px; font-weight: 800; color: var(--primary-dark); }
+    .tier-price { font-size: 28px; font-weight: 900; color: var(--text-main); margin: 4px 0 12px; }
+    .tier-price span { font-size: 12px; font-weight: 500; color: var(--text-muted); }
+    .checklist { list-style: none; margin-bottom: 18px; }
+    .checklist li { font-size: 13px; color: #44403c; padding: 5px 0; display: flex; gap: 8px; }
+    .checklist li::before { content: "✓"; color: var(--primary); font-weight: 900; }
+    .btn-primary { background: var(--primary); color: #ffffff; width: 100%; display: block; }
+    .btn-secondary { background: #f5f5f4; color: var(--text-main); width: 100%; display: block; }
+
+    /* Event Types Pills */
+    .tags { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; }
+    .tag {
+      background: #ffffff;
+      border: 1px solid #d6d3d1;
+      font-size: 12px;
+      font-weight: 600;
+      padding: 6px 14px;
+      border-radius: 999px;
+      color: #44403c;
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 24px 16px;
+      border-top: 1px solid #e7e5e4;
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="container">
+      <span class="pill">Mdantsane &amp; East London</span>
+      <h1>Skip Expensive Printing. Go Digital This Festive Season.</h1>
+      <p>Guests simply scan a QR code at your event entrance to view your full schedule, venue map, and hosts right on their phones—no app needed.</p>
+      <div class="cta-group">
+        <a href="https://wa.me." class="btn btn-white">
+          💬 Book on WhatsApp
+        </a>
+        <a href="/e/demo" class="btn btn-outline">
+          👀 Try Live Demo Program
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+
+    <!-- Why Switch -->
+    <section>
+      <h2>Why Event Hosts Love It</h2>
+      <p class="section-sub">Save thousands of Rands while giving guests a modern experience</p>
+
+      <div class="feature-card">
+        <div class="icon-box">💸</div>
+        <div>
+          <h3>Save Up to 75% on Printing</h3>
+          <p>Stop paying R2,000–R5,000 for paper booklets that get lost, rained on, or left behind on chairs.</p>
+        </div>
+      </div>
+
+      <div class="feature-card">
+        <div class="icon-box">⚡</div>
+        <div>
+          <h3>Instant Last-Minute Edits</h3>
+          <p>Speaker running late or order of events changed? We update your live program in 30 seconds—zero reprinting.</p>
+        </div>
+      </div>
+
+      <div class="feature-card">
+        <div class="icon-box">📶</div>
+        <div>
+          <h3>Works 100% Offline &amp; Seat-to-Seat</h3>
+          <p>Once scanned, the program saves offline on guests' phones and includes an instant <strong>Share QR</strong> button for neighbours.</p>
+        </div>
+      </div>
+
+      <div class="feature-card">
+        <div class="icon-box">📍</div>
+        <div>
+          <h3>One-Tap Venue Directions</h3>
+          <p>Includes a built-in Google Maps pin so out-of-town guests find your hall, tent, or home without getting lost.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Perfect For -->
+    <section>
+      <h2>Perfect For Every Gathering</h2>
+      <p class="section-sub">Custom matched to your event's exact colours</p>
+      <div class="tags">
+        <span class="tag">💍 Traditional Weddings (Imigidi)</span>
+        <span class="tag">🎓 Graduations</span>
+        <span class="tag">⛪ Church Conferences</span>
+        <span class="tag">🥂 21st &amp; Birthday Parties</span>
+        <span class="tag">🕊️ Memorials &amp; Funerals</span>
+        <span class="tag">🎶 Concerts &amp; Festivals</span>
+      </div>
+    </section>
+
+    <!-- Pricing -->
+        <!-- Pricing -->
+    <section id="pricing">
+      <h2>Simple, Transparent Pricing</h2>
+      <p class="section-sub">Delivered within 24 hours of sending your details</p>
+
+      <!-- Tier 1: Standard -->
+      <div class="price-card">
+        <div class="tier-name">Standard Digital Package</div>
+        <div class="tier-price">R450 <span>/ event</span></div>
+        <ul class="checklist">
+          <li>Custom mobile-friendly digital program</li>
+          <li>Matched to your event's colour theme</li>
+          <li>One-tap Google Maps venue directions</li>
+          <li>Offline saving + seat-to-seat Share QR</li>
+          <li>Print-ready A4 QR code poster PDF</li>
+        </ul>
+        <a href="https://wa.me." class="btn btn-secondary">
+          Choose Standard &rarr;
+        </a>
+      </div>
+
+      <!-- Tier 2: Classic Plus (Middle Anchor) -->
+      <div class="price-card featured">
+        <span class="popular-tag">Best Value</span>
+        <div class="tier-name">Classic Plus Package</div>
+        <div class="tier-price">R650 <span>/ event</span></div>
+        <ul class="checklist">
+          <li>Everything in the Standard Package</li>
+          <li>Up to 3 last-minute schedule edits before event</li>
+          <li>Special tributes, hymns, or dress-code section</li>
+          <li><strong>1x Laminated A4 Entrance Poster</strong> delivered locally</li>
+        </ul>
+        <a href="https://wa.me." class="btn btn-primary">
+          Choose Classic Plus &rarr;
+        </a>
+      </div>
+
+      <!-- Tier 3: Premium -->
+      <div class="price-card">
+        <div class="tier-name">Premium Event Package</div>
+        <div class="tier-price">R850 <span>/ event</span></div>
+        <ul class="checklist">
+          <li>Everything in the Classic Plus Package</li>
+          <li>Unlimited schedule edits up to 2 hrs before start</li>
+          <li><strong>3x Laminated A4 Entrance Posters</strong> (Mdantsane / EL)</li>
+          <li>Priority WhatsApp support on your event day</li>
+        </ul>
+        <a href="https://wa.me." class="btn btn-secondary">
+          Choose Premium &rarr;
+        </a>
+      </div>
+    </section>
+
+
+  </main>
+
+  <footer>
+    <p><strong>Mdantsane Digital Events</strong> &bull; Serving Mdantsane, East London &amp; Surrounds</p>
+    <p style="margin-top: 4px;">WhatsApp: 068 161 8082</p>
+  </footer>
+
+</body>
+</html>
