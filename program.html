@@ -318,19 +318,21 @@
         document.getElementById("welcome-note").textContent = eventData.welcomeNote;
         document.getElementById("map-link").href = eventData.mapUrl;
 
-        document.getElementById("schedule-list").innerHTML = eventData.schedule.map(item => 
-        <div class="schedule-item"> 
-          <div class="time-pill">${item.time}</div> 
-          <div> <h3 class="item-title">${item.title}</h3> 
-            <p class="item-lead">${item.lead}</p> 
-          </div> 
-        </div>).join("");
+        document.getElementById("schedule-list").innerHTML = eventData.schedule.map(item => `
+          <div class="schedule-item">
+            <div class="time-pill">${item.time}</div>
+            <div>
+              <h3 class="item-title">${item.title}</h3>
+              <p class="item-lead">${item.lead}</p>
+            </div>
+          </div>
+        `).join("");
 
-        document.getElementById("people-list").innerHTML = eventData.keyPeople.map(person => 
+        document.getElementById("people-list").innerHTML = eventData.keyPeople.map(person => `
         <li> 
           <span class="person-role">${person.role}</span> 
           <span class="person-name">${person.name}</span> 
-        </li>).join("");
+        </li>`).join("");
         } catch (error) {
         console.error(error);
       }
