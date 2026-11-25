@@ -18,7 +18,6 @@
     html { scroll-behavior: smooth; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
     body { background: var(--bg-page); color: var(--text-main); line-height: 1.55; }
 
-    /* Hero Section */
     header {
       background: linear-gradient(160deg, var(--primary) 0%, var(--primary-dark) 100%);
       color: #ffffff;
@@ -59,13 +58,11 @@
     .btn-white { background: #ffffff; color: var(--primary-dark); box-shadow: 0 4px 12px rgba(0,0,0,0.15); }
     .btn-outline { background: rgba(255,255,255,0.12); color: #ffffff; border: 1px solid rgba(255,255,255,0.3); }
 
-    /* Sections */
     main { padding: 28px 16px 48px; }
     section { margin-bottom: 34px; }
     h2 { font-size: 20px; font-weight: 800; text-align: center; margin-bottom: 6px; color: var(--primary-dark); }
     .section-sub { text-align: center; font-size: 13px; color: var(--text-muted); margin-bottom: 20px; }
 
-    /* Feature Grid */
     .feature-card {
       background: #ffffff;
       padding: 16px;
@@ -91,7 +88,66 @@
     .feature-card h3 { font-size: 15px; font-weight: 700; margin-bottom: 2px; }
     .feature-card p { font-size: 13px; color: var(--text-muted); }
 
-    /* Pricing Cards */
+    .tags { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; }
+    .tag {
+      background: #ffffff;
+      border: 1px solid #d6d3d1;
+      font-size: 12px;
+      font-weight: 600;
+      padding: 6px 14px;
+      border-radius: 999px;
+      color: #44403c;
+    }
+
+    .calc-card {
+      background: #ffffff;
+      border: 2px solid #e7e5e4;
+      border-radius: 20px;
+      padding: 20px;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.04);
+    }
+    .calc-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 14px; }
+    .calc-field label {
+      display: block;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 5px;
+    }
+    .calc-field input, .calc-field select {
+      width: 100%;
+      padding: 10px 12px;
+      border-radius: 10px;
+      border: 1px solid #d6d3d1;
+      font-size: 14px;
+      font-weight: 600;
+      background: #fafaf9;
+      color: var(--text-main);
+    }
+    .compare-boxes { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 16px 0 12px; }
+    .quote-box { padding: 14px 12px; border-radius: 14px; text-align: center; }
+    .quote-box.print { background: #fef2f2; border: 1px solid #fecaca; }
+    .quote-box.digital { background: var(--accent-soft); border: 2px solid var(--primary); }
+    .quote-label { font-size: 11px; font-weight: 700; text-transform: uppercase; margin-bottom: 4px; }
+    .quote-box.print .quote-label { color: #991b1b; }
+    .quote-box.digital .quote-label { color: var(--primary); }
+    .quote-amount { font-size: 22px; font-weight: 900; }
+    .quote-box.print .quote-amount { color: #b91c1c; text-decoration: line-through; }
+    .quote-box.digital .quote-amount { color: var(--primary-dark); }
+    .quote-note { font-size: 11px; color: var(--text-muted); margin-top: 2px; }
+    .savings-banner {
+      background: #ecfdf5;
+      color: #065f46;
+      border: 1px solid #a7f3d0;
+      font-size: 13px;
+      font-weight: 700;
+      text-align: center;
+      padding: 10px;
+      border-radius: 12px;
+      margin-bottom: 12px;
+    }
+
     .price-card {
       background: #ffffff;
       border: 2px solid #e7e5e4;
@@ -100,10 +156,7 @@
       margin-bottom: 16px;
       position: relative;
     }
-    .price-card.featured {
-      border-color: var(--primary);
-      box-shadow: 0 8px 20px rgba(120, 53, 15, 0.08);
-    }
+    .price-card.featured { border-color: var(--primary); box-shadow: 0 8px 20px rgba(120, 53, 15, 0.08); }
     .popular-tag {
       position: absolute;
       top: -11px;
@@ -126,19 +179,6 @@
     .btn-primary { background: var(--primary); color: #ffffff; width: 100%; display: block; }
     .btn-secondary { background: #f5f5f4; color: var(--text-main); width: 100%; display: block; }
 
-    /* Event Types Pills */
-    .tags { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; }
-    .tag {
-      background: #ffffff;
-      border: 1px solid #d6d3d1;
-      font-size: 12px;
-      font-weight: 600;
-      padding: 6px 14px;
-      border-radius: 999px;
-      color: #44403c;
-    }
-
-    /* Footer */
     footer {
       text-align: center;
       padding: 24px 16px;
@@ -168,7 +208,6 @@
 
   <main class="container">
 
-    <!-- Why Switch -->
     <section>
       <h2>Why Event Hosts Love It</h2>
       <p class="section-sub">Save thousands of Rands while giving guests a modern experience</p>
@@ -206,12 +245,12 @@
       </div>
     </section>
 
-    <!-- Perfect For -->
     <section>
       <h2>Perfect For Every Gathering</h2>
       <p class="section-sub">Custom matched to your event's exact colours</p>
       <div class="tags">
-        <span class="tag">💍 Traditional Weddings (Imigidi)</span>
+        <span class="tag">💍 Traditional Weddings</span>
+        <span class="tag">🪘 Imigidi</span>
         <span class="tag">🎓 Graduations</span>
         <span class="tag">⛪ Church Conferences</span>
         <span class="tag">🥂 21st &amp; Birthday Parties</span>
@@ -220,13 +259,62 @@
       </div>
     </section>
 
-    <!-- Pricing -->
-        <!-- Pricing -->
+    <section id="quote-calculator">
+      <h2>Print vs. Digital Quote Calculator</h2>
+      <p class="section-sub">Enter what a print shop would quote you to see your instant savings</p>
+
+      <div class="calc-card">
+        <div class="calc-grid">
+          <div class="calc-field">
+            <label for="guest-qty">Number of Pamphlets</label>
+            <input type="number" id="guest-qty" value="100" min="20" max="2000" step="10" oninput="calculateQuote()" />
+          </div>
+          <div class="calc-field">
+            <label for="page-count">Pages Per Booklet</label>
+            <select id="page-count" onchange="calculateQuote()">
+              <option value="2">2 Pages (Single Flyer)</option>
+              <option value="4" selected>4 Pages (Folded A4)</option>
+              <option value="8">8 Pages (Booklet)</option>
+              <option value="12">12+ Pages (Full Program)</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="calc-field">
+          <label for="digital-tier">Compare With Mdantsane Digital Package</label>
+          <select id="digital-tier" onchange="calculateQuote()">
+            <option value="450">Standard Digital Package (R450)</option>
+            <option value="650" selected>Classic Plus + 1 Laminated Poster (R650)</option>
+            <option value="850">Premium + 3 Laminated Posters (R850)</option>
+          </select>
+        </div>
+
+        <div class="compare-boxes">
+          <div class="quote-box print">
+            <div class="quote-label">Avg. Print Store</div>
+            <div class="quote-amount" id="print-estimate">R1,350</div>
+            <div class="quote-note" id="print-breakdown">100 × 4-page gloss</div>
+          </div>
+          <div class="quote-box digital">
+            <div class="quote-label">Mdantsane Digital</div>
+            <div class="quote-amount" id="digital-estimate">R650</div>
+            <div class="quote-note">Unlimited guests</div>
+          </div>
+        </div>
+
+        <div class="savings-banner" id="savings-text">
+          🎉 You save R700 (52%) by going digital!
+        </div>
+
+        <a id="calc-wa-btn" href="https://wa.me." class="btn btn-primary">
+          💬 Lock In This Digital Price
+        </a>
+      </div>
+    </section>
     <section id="pricing">
       <h2>Simple, Transparent Pricing</h2>
       <p class="section-sub">Delivered within 24 hours of sending your details</p>
 
-      <!-- Tier 1: Standard -->
       <div class="price-card">
         <div class="tier-name">Standard Digital Package</div>
         <div class="tier-price">R450 <span>/ event</span></div>
@@ -242,7 +330,6 @@
         </a>
       </div>
 
-      <!-- Tier 2: Classic Plus (Middle Anchor) -->
       <div class="price-card featured">
         <span class="popular-tag">Best Value</span>
         <div class="tier-name">Classic Plus Package</div>
@@ -258,7 +345,6 @@
         </a>
       </div>
 
-      <!-- Tier 3: Premium -->
       <div class="price-card">
         <div class="tier-name">Premium Event Package</div>
         <div class="tier-price">R850 <span>/ event</span></div>
@@ -274,13 +360,54 @@
       </div>
     </section>
 
-
   </main>
 
   <footer>
     <p><strong>Mdantsane Digital Events</strong> &bull; Serving Mdantsane, East London &amp; Surrounds</p>
     <p style="margin-top: 4px;">WhatsApp: 068 161 8082</p>
   </footer>
+
+  <script>
+    function calculateQuote() {
+      const qty = Math.max(10, parseInt(document.getElementById("guest-qty").value) || 50);
+      const pages = parseInt(document.getElementById("page-count").value);
+      const digitalPrice = parseInt(document.getElementById("digital-tier").value);
+
+      const perUnitRates = {
+        2: 6.50,
+        4: 11.00,
+        8: 18.50,
+        12: 26.00
+      };
+
+      const bulkMultiplier = qty >= 250 ? 0.85 : qty >= 150 ? 0.92 : 1.0;
+      const setupFee = 250;
+      const estimatedPrint = Math.round((qty * perUnitRates[pages] * bulkMultiplier + setupFee) / 10) * 10;
+
+      const savings = estimatedPrint - digitalPrice;
+      const percentSaved = Math.max(0, Math.round((savings / estimatedPrint) * 100));
+
+      document.getElementById("print-estimate").textContent = "R" + estimatedPrint.toLocaleString();
+      document.getElementById("print-breakdown").textContent = `${qty} × ${pages}-page gloss + setup`;
+      document.getElementById("digital-estimate").textContent = "R" + digitalPrice.toLocaleString();
+
+      const savingsBanner = document.getElementById("savings-text");
+      if (savings > 0) {
+        savingsBanner.style.background = "#ecfdf5";
+        savingsBanner.style.color = "#065f46";
+        savingsBanner.textContent = `🎉 You save R${savings.toLocaleString()} (${percentSaved}%) by going digital!`;
+      } else {
+        savingsBanner.style.background = "#fffbeb";
+        savingsBanner.style.color = "#78350f";
+        savingsBanner.textContent = `✨ Unlimited guests, live edits & venue map included!`;
+      }
+
+      const msg = `Hi! I checked your calculator for ${qty} x ${pages}-page programs (est. R${estimatedPrint} print vs R${digitalPrice} digital) and would like to book!`;
+      document.getElementById("calc-wa-btn").href = `https://wa.me{encodeURIComponent(msg)}`;
+    }
+
+    calculateQuote();
+  </script>
 
 </body>
 </html>
